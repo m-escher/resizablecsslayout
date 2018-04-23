@@ -5,13 +5,19 @@
     <groupId>com.vaadin.pekka</groupId>
     <artifactId>resizablecsslayout</artifactId>
     <packaging>jar</packaging>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <name>ResizableCssLayout Add-on</name>
+
+    <parent>
+        <groupId>de.adito</groupId>
+        <artifactId>adito-parent</artifactId>
+        <version>1.1.1</version>
+    </parent>
 
     <properties>
         <skipTests>true</skipTests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vaadin.version>8.1.5</vaadin.version>
+        <vaadin.version>8.3.0</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 
         <!-- ZIP Manifest fields -->
