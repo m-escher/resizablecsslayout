@@ -83,7 +83,7 @@ public class ResizableCssLayoutConnector extends CssLayoutConnector implements
 
     @Override
     public void onResizeEnd(ResizeEndEvent event) {
-        rpc.onResizeEnd(event.getHeight(), event.getWidth());
+        rpc.onResizeEnd(event.getHeight(), event.getWidth(), event.getParentHeight(), event.getParentWidth());
     }
 
     @Override

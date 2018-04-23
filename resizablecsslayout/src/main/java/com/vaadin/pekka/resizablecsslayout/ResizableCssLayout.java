@@ -47,10 +47,10 @@ public class ResizableCssLayout extends com.vaadin.ui.CssLayout {
         }
 
         @Override
-        public void onResizeEnd(int height, int width) {
+        public void onResizeEnd(int height, int width, int pParentHeight, int pParentWidth) {
             pendingHeight = height;
             pendingWidth = width;
-            fireResizeEnd(height, width);
+            fireResizeEnd(height, width, pParentHeight, pParentWidth);
             resizing = false;
             respondResizeAcceptance();
         }
@@ -474,8 +474,8 @@ public class ResizableCssLayout extends com.vaadin.ui.CssLayout {
         fireEvent(new ResizeStartEvent(this, resizeLocation, height, width));
     }
 
-    protected void fireResizeEnd(int height, int width) {
-        fireEvent(new ResizeEndEvent(this, height, width));
+    protected void fireResizeEnd(int height, int width, int pParentHeight, int pParentWidth) {
+        fireEvent(new ResizeEndEvent(this, height, width, pParentHeight, pParentWidth));
     }
 
     protected void fireResizeCancel() {
@@ -562,11 +562,15 @@ public class ResizableCssLayout extends com.vaadin.ui.CssLayout {
 
         private final int height;
         private final int width;
+        private final int parentHeight;
+        private final int parentWidth;
 
-        public ResizeEndEvent(Component source, int height, int width) {
+        public ResizeEndEvent(Component source, int height, int width, int pParentHeight, int pParentWidth) {
             super(source);
             this.height = height;
             this.width = width;
+            parentHeight = pParentHeight;
+            parentWidth = pParentWidth;
         }
 
         /**
@@ -585,6 +589,16 @@ public class ResizableCssLayout extends com.vaadin.ui.CssLayout {
          */
         public int getWidth() {
             return width;
+        }
+
+        public int getParentHeight()
+        {
+            return parentHeight;
+        }
+
+        public int getParentWidth()
+        {
+            return parentWidth;
         }
     }
 

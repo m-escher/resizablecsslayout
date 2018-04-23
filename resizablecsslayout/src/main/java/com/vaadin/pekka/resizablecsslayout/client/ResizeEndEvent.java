@@ -7,51 +7,78 @@ import com.google.gwt.event.shared.GwtEvent;
  * the pressed mouse button. Contains the resized new width and height for the
  * event source.
  */
-public class ResizeEndEvent extends GwtEvent<ResizableLayoutHandler> {
+public class ResizeEndEvent extends GwtEvent<ResizableLayoutHandler>
+{
 
-    private final int height;
-    private final int width;
+  private final int height;
+  private final int width;
+  private final int parentHeight;
+  private final int parentWidth;
 
-    public ResizeEndEvent(int height, int width) {
-        this.height = height;
-        this.width = width;
-    }
+  public ResizeEndEvent(int height, int width, int parentHeight, int parentWidth)
+  {
+    this.height = height;
+    this.width = width;
+    this.parentHeight = parentHeight;
+    this.parentWidth = parentWidth;
+  }
 
-    /**
-     * @return the proposed resized height for the event source.
-     */
-    public int getHeight() {
-        return height;
-    }
+  /**
+   * @return the proposed resized height for the event source.
+   */
+  public int getHeight()
+  {
+    return height;
+  }
 
-    /**
-     * @return the proposed resized width for the event source.
-     */
-    public int getWidth() {
-        return width;
-    }
+  /**
+   * @return the proposed resized width for the event source.
+   */
+  public int getWidth()
+  {
+    return width;
+  }
 
-    /**
-     * Event type for resize end events.
-     */
-    private static final Type<ResizableLayoutHandler> TYPE = new Type<ResizableLayoutHandler>();
+  /**
+   * @return the height of the parent widget
+   */
+  public int getParentHeight()
+  {
+    return parentHeight;
+  }
 
-    /**
-     * Gets the event type associated with resize end events.
-     *
-     * @return the handler type
-     */
-    public static Type<ResizableLayoutHandler> getType() {
-        return TYPE;
-    }
+  /**
+   * @return the width of the parent widget
+   */
+  public int getParentWidth()
+  {
+    return parentWidth;
+  }
 
-    @Override
-    public final Type<ResizableLayoutHandler> getAssociatedType() {
-        return TYPE;
-    }
+  /**
+   * Event type for resize end events.
+   */
+  private static final Type<ResizableLayoutHandler> TYPE = new Type<ResizableLayoutHandler>();
 
-    @Override
-    protected void dispatch(ResizableLayoutHandler handler) {
-        handler.onResizeEnd(this);
-    }
+  /**
+   * Gets the event type associated with resize end events.
+   *
+   * @return the handler type
+   */
+  public static Type<ResizableLayoutHandler> getType()
+  {
+    return TYPE;
+  }
+
+  @Override
+  public final Type<ResizableLayoutHandler> getAssociatedType()
+  {
+    return TYPE;
+  }
+
+  @Override
+  protected void dispatch(ResizableLayoutHandler handler)
+  {
+    handler.onResizeEnd(this);
+  }
 }

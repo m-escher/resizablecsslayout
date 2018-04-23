@@ -6,7 +6,7 @@ public interface ResizableCssLayoutServerRpc extends ServerRpc {
 
     void onResizeStart(ResizeLocation resizeLocation, int height, int width);
 
-    void onResizeEnd(int height, int width);
+    void onResizeEnd(int height, int width, int pParentHeight, int pParentWidth);
 
     void onResizeCancel();
 }

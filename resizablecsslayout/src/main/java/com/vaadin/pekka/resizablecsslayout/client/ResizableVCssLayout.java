@@ -392,9 +392,9 @@ public class ResizableVCssLayout extends VCssLayout implements
     return addHandler(handler, ResizeCancelEvent.getType());
   }
 
-  protected void fireResizeEnd(int clientWidth, int clientHeight)
+  protected void fireResizeEnd(int clientHeight, int clientWidth, int parentHeight, int parentWidth)
   {
-    fireEvent(new ResizeEndEvent(clientHeight, clientWidth));
+    fireEvent(new ResizeEndEvent(clientHeight, clientWidth, parentHeight, parentWidth));
   }
 
   protected void fireResizeStart(ResizeLocation resizeLocation)
@@ -650,8 +650,10 @@ public class ResizableVCssLayout extends VCssLayout implements
         stopCursorOverride();
         unmarkBoundaryResizing();
 
-        fireResizeEnd(WidgetUtil.getRequiredWidth(dragOverlayElement),
-                      WidgetUtil.getRequiredHeight(dragOverlayElement));
+        fireResizeEnd(WidgetUtil.getRequiredHeight(dragOverlayElement),
+                      WidgetUtil.getRequiredWidth(dragOverlayElement),
+                      getParent().getOffsetHeight(),
+                      getParent().getOffsetWidth());
 
         if (autoAcceptResize)
         {
